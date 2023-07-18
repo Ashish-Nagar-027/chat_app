@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat app using sockets</title>
+    <style>
+        input {
+            padding: 5px 10px;
+            outline: none;
+            border-radius: 10px;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 5px 10px;
+            outline: none;
+            border-radius: 10px;
+        }
+    </style>
 </head>
+
 <body>
     <h1>Sockets</h1>
-
-    <button id="btn">Click Me</button>
+    <br />
+    <br />
+    <input type="text" id="username" placeholder="Enter room id...">
+    <br />
+    <br />
+    <button id="join-room-btn">Send</button>
+    <br />
+    <br />
+    <button id="create-room-btn">create new room</button>
     <script src="/socket.io/socket.io.js"></script>
-     <script src="./script.js"></script>
+    <script src="./script.js"></script>
 </body>
+
 </html>

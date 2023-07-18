@@ -1,16 +1,32 @@
-var socket = io();
-const btn = document.getElementById('btn')
+const newRomBtn = document.getElementById('create-room-btn')
+const joinRoomBtn = document.getElementById('join-room-btn')
+var socket = io()
 
+newRomBtn.addEventListener('click', async () => {
+    const uniqeId = new Date().valueOf();
+   const newRoomRequest = await fetch("/",
+    {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({roomId: uniqeId})
+    })
 
-btn.onclick = function exec() {
-    socket.emit('from_client')
-}
-
-
-socket.on('from_server', () => {
-    console.log('collected a new event from server')
-
-    const div = document.createElement('div')
-    div.innerText = 'new Event from server'
-    document.body.appendChild(div)
+    const data = await newRoomRequest.json();
+    console.log(data)
+    console.log(`/chat/${data.roomid}`)
+     
+    if(data.msg === 'room joined'){
+         window.location.href = `/chat/${data.roomid}`
+    }
 })
+
+joinRoomBtn.addEventListener('click', async () => {
+    console.log('join room btn')
+})
+
+
+
+
